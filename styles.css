@@ -449,7 +449,12 @@ div#comp-lidkhab21 {
 }
 
 .accordion-body,
-span.network-label {
+span.network-label,
+.heading,
+.subheading,
+.content-label p,
+.content p,
+.gallery-label p {
   color: #000 !important;
 }
 
