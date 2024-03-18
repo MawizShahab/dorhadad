@@ -1,0 +1,234 @@
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+::-webkit-scrollbar-track {
+  margin: 0.25rem;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 0.635rem;
+}
+::selection {
+  background-color: #000000;
+}
+:not(:root):fullscreen::backdrop {
+  background: #00000050;
+  backdrop-filter: blur(3px);
+}
+:root {
+  --main-bg: #f0f1f5;
+  --bg: #ffffff;
+  --color: #333;
+  --link: #3ea6ff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-bg: #1f1f1f;
+    --bg: #282828;
+    --color: #f0f1f5;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  word-wrap: break-word;
+  /* font-size: 1rem;
+  font-family: "Nunito", sans-serif; */
+  box-sizing: border-box;
+  color: var(--color);
+}
+body {
+  margin: 2rem;
+  background-color: var(--main-bg);
+}
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--bg);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+}
+h1 {
+  font-size: 1.2rem;
+}
+.gallery,
+.overlay img {
+  user-select: none;
+}
+.gallery {
+  opacity: 0;
+  transition: opacity 0.25s linear 0.25s;
+}
+.gallery.uploaded {
+  opacity: 1;
+}
+.gallery:hover .gallery__figure:not(:hover) {
+  opacity: 0.3;
+}
+.gallery__figure {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  animation: fade-in 1s;
+  transition: opacity 0.3s;
+}
+.gallery__figure,
+.gallery__open img {
+  border-radius: 5px;
+}
+.gallery__img {
+  transition: all 0.3s;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  height: auto;
+  max-width: 100%;
+}
+.gallery__img:hover {
+  transform: scale(1.2);
+}
+.gallery.flex {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+}
+.gallery.grid {
+  display: grid;
+  gap: 0.5rem;
+}
+
+figure {
+  margin: 0 !important;
+}
+#categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+#categories label {
+  cursor: pointer;
+}
+.overlay {
+  display: grid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  grid-template-columns: 100%;
+  grid-template-rows: auto 1fr auto;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s;
+  backdrop-filter: blur(3px);
+}
+.overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.overlay__btns {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.overlay button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  width: 3em;
+  height: 3em;
+}
+.overlay button i {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #fff;
+}
+.overlay :is(#next, #prev) {
+  position: absolute;
+  bottom: calc(50vh - 24px);
+}
+#next {
+  right: 0;
+}
+#gallery__exitfullscreen {
+  display: none;
+}
+.overlay .leyend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  text-align: center;
+  color: #fff;
+}
+.gallery__open {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gallery__open img {
+  max-height: calc(100vh - 96px);
+  max-width: 100%;
+}
+.gallery__open img:hover ~ figcaption {
+  display: flex;
+}
+.overlay figcaption {
+  display: none;
+  position: absolute;
+  top: 0;
+  background-color: #ffffffd0;
+  color: #333;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+input[name="categories"] {
+  display: none;
+}
+[value="all"]:checked ~ #gallery .gallery__figure[data-category] {
+  display: block;
+}
+[value="Christmas"]:checked
+  ~ #gallery
+  .gallery__figure:not([data-category~="Christmas"]),
+[value="Anime"]:checked
+  ~ #gallery
+  .gallery__figure:not([data-category~="Anime"]),
+[value="Camping"]:checked
+  ~ #gallery
+  .gallery__figure:not([data-category~="Camping"]),
+[value="Wings"]:checked
+  ~ #gallery
+  .gallery__figure:not([data-category~="Wings"]) {
+  display: none;
+}
+[value="all"]:checked ~ .categories [for="all"],
+[value="Christmas"]:checked ~ .categories [for="Christmas"],
+[value="Anime"]:checked ~ .categories [for="Anime"],
+[value="Camping"]:checked ~ .categories [for="Camping"],
+[value="Wings"]:checked ~ .categories [for="Wings"] {
+  color: #1b95e0;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
