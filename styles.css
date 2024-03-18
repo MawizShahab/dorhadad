@@ -427,6 +427,27 @@ button.accordion-button::after {
   box-shadow: none !important;
 }
 
+.save-file {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+}
+
+div#comp-lidkhab21 a {
+  text-decoration: none;
+}
+
+div#comp-lidkhab21 span {
+  color: #fff;
+  font-weight: bold;
+}
+
+div#comp-lidkhab21 {
+  padding: 20px 25px;
+  background: #000;
+}
+
 body {
   background-image: url("https://static.wixstatic.com/media/515225_82395494977749598651f199d727869c~mv2.jpg/v1/fill/w_1280,h_1920,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/515225_82395494977749598651f199d727869c~mv2.jpg");
   background-size: 100% 100%;
